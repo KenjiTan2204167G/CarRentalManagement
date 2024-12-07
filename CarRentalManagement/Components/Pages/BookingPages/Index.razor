@@ -6,7 +6,6 @@
 @using CarRentalManagement.Data
 @implements IAsyncDisposable
 @inject IDbContextFactory<CarRentalManagement.Data.CarRentalManagementContext> DbFactory
-@attribute [Authorize(Roles = "Administrator, User")]
 
 <PageTitle>Index</PageTitle>
 

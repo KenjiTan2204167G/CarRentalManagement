@@ -81,4 +81,16 @@
         await context.SaveChangesAsync();
         NavigationManager.NavigateTo("/vehicles");
     }
+    private CarRentalManagementContext context = default!;
+    private IList<Make> Makes;
+    private IList<Model> Models;
+    private IList<Colour> Colours;
+    //OnInitialized method to get all Makes, Models and Colours
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+        Makes = context.Make.ToList();
+        Models = context.Model.ToList();
+        Colours = context.Colour.ToList();
+    }
 }

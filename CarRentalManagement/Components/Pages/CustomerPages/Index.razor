@@ -1,4 +1,5 @@
 ﻿@page "/customers"
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.EntityFrameworkCore
 @using Microsoft.AspNetCore.Components.QuickGrid
 @using CarRentalManagement.Domain
@@ -25,9 +26,11 @@
     <PropertyColumn Property="customer => customer.UpdatedBy" />
 
     <TemplateColumn Context="customer">
-        <a href="@($"customers/edit?id={customer.Id}")">Edit</a> |
-        <a href="@($"customers/details?id={customer.Id}")">Details</a> |
-        <a href="@($"customers/delete?id={customer.Id}")">Delete</a>
+        <a href="@($"customers/edit?id={customer.Id}")">Edit</a>|
+        <a href="@($"customers/details?id={customer.Id}")">Details</a>
+        <AuthorizeView Roles="Administrator">
+            | <a href="@($"customers/delete?id={customer.Id}")">Delete</a>
+        </AuthorizeView>
     </TemplateColumn>
 </QuickGrid>
 
